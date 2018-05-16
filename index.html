@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Tenis gra w JavaScripcie
+    </title>
+    <style>
+        
+        body{
+            margin: 0;
+            padding: 0;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: darkgray;
+            
+        }
+        canvas {
+            border: 3px sold #ffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- umieszczony element canvas w body strony -->
+	<canvas ></canvas>
+    <script>
+        const canvas = document.querySelector('canvas'); //pobiera elementu canvas
+        //const canv =document.getElementById("0p") gdyby canvas miał id="op"
+        
+        const ctx =canvas.getContext('2d'); //context- ctx , pobieramy wartosci potrzebne  do ktorych bedziemy sie odwolywac przez ct i sie przydadza nam w 2d
+        
+        /**
+        nadajemy canvas wysokosci i szerokosc domyslnie 300*150
+        */
+        const cw = canvas.width=1000;
+        const ch = canvas.height=500;
+        const ballsize = 20; //wielkosc naszej pilki
+        let ballX = cw/2 - ballsize / 2; //od 490 do 510px
+        let ballY = ch/2 - ballsize / 2; //od 240 do 250px
+        
+        const paddelHeight = 100;
+        const paddelWidth = 10;
+        
+        const playerX = 70;
+        const aiX = 910;
+        
+        let playerY = 200;
+        let aiY = 200;
+        
+        const lineWidth =  6;
+        const lineHeight = 16;
+        
+                        /**
+        Funkcja do wywołania narysowania ai
+        */
+        function ai(){
+            ctx.fillStyle='yellow';
+            ctx.fillRect(aiX,aiY,paddelWidth,paddelHeight);
+        }
+                /**
+        Funkcja do wywołania narysowania playera
+        */
+        function player(){
+            ctx.fillStyle='red';
+            ctx.fillRect(playerX,playerY,paddelWidth,paddelHeight);
+        }
+        /**
+        Funkcja do wywołania narysowania ball
+        */
+        function ball(){
+            ctx.fillStyle='white';
+
+            ctx.fillRect(cw/2-ballsize,ch/2-ballsize,ballsize,ballsize);
+        }
+        
+        /**
+        Funkcja do wywołania rysowania czarnej tablicy
+        */
+        function table(){
+            /*
+            Ustawiamy kolor rysowania na czarny,  i rysujemy czarny prostokat o wymiarach  z parametrów */
+            ctx.fillStyle='black';
+            ctx.fillRect(0,0,cw,ch);
+            for(let linePosition = 20; linePosition < 500; linePosition +=30){
+                ctx.fillStyle = "gray";
+                ctx.fillRect(cw/2 - lineWidth/2,linePosition,lineWidth,lineHeight);
+                console.log("x :" +(cw/2 - lineWidth/2));
+                console.log("y :" +(cw/2 - lineWidth/2));
+            }
+        
+            
+        }
+        table();
+        ball();
+        player();
+        ai();
+
+
+    </script>
+</body>
+</html>
